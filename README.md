@@ -7,7 +7,7 @@
 
 3. [Flutter Typeahead (1.8.0)](https://pub.dev/packages/flutter_typeahead)
 
-4. [Provider(4.0.4)](https://pub.dev/packages/flutter_typeahead)
+4. [Provider(4.0.4)](https://pub.dev/packages/provider)
 
 4. [Dio(3.0.8)](https://pub.dev/packages/dio)
 
