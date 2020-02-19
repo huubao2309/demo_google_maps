@@ -18,7 +18,15 @@ class PickerBloc with ChangeNotifier {
     return _instance;
   }
 
-  PickerBloc._internal();
+  PickerBloc._internal() {
+    if (currentLocation == null) {
+      currentLocation = LocationMap()
+        ..name = 'No Name'
+        ..formattedAddress = 'No Format'
+        ..lat = 10.772919
+        ..lng = 106.696738;
+    }
+  }
 
   Future<List<LocationMap>> search(String query) async {
     String url =

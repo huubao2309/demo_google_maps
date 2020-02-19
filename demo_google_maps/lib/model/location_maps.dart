@@ -6,11 +6,6 @@ class LocationMap {
 
   LocationMap({this.name, this.formattedAddress, this.lat, this.lng});
 
-  // String get nameLocation => name;
-  // String get formattedAddressLocation => formattedAddress;
-  // double get latitule => lat;
-  // double get longitude => lng;
-
   factory LocationMap.fromJson(Map<String, dynamic> map) {
     return LocationMap(
       name: map['name'],
