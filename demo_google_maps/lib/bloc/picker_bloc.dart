@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:demo_google_maps/model/location_maps.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+import 'package:geolocator/geolocator.dart';
 
 class PickerBloc with ChangeNotifier {
   StreamController<LocationMap> locationController =
@@ -19,13 +20,18 @@ class PickerBloc with ChangeNotifier {
   }
 
   PickerBloc._internal() {
-    if (currentLocation == null) {
-      currentLocation = LocationMap()
-        ..name = 'No Name'
-        ..formattedAddress = 'No Format'
-        ..lat = 10.772919
-        ..lng = 106.696738;
-    }
+    // if (currentLocation == null) {
+    //   currentLocation = LocationMap()
+    //     ..name = 'No Name'
+    //     ..formattedAddress = 'No Format'
+    //     ..lat = 10.772919
+    //     ..lng = 106.696738;
+    // }
+  }
+
+  Future<Position> getCurrentLocation() async {
+    return await Geolocator()
+        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   }
 
   Future<List<LocationMap>> search(String query) async {

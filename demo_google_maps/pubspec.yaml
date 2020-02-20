@@ -27,6 +27,7 @@ dependencies:
   flutter_typeahead: ^1.8.0
   provider: ^4.0.4
   dio: ^3.0.8
+  geolocator: ^5.2.1
 
 dev_dependencies:
   flutter_test:

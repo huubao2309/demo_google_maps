@@ -31,8 +31,12 @@ class MapPickerState extends State<MapPicker> {
           CameraUpdate.newCameraPosition(
             CameraPosition(
               target: LatLng(
-                location.lat,
-                location.lng,
+                await widget.bloc
+                    .getCurrentLocation()
+                    .then((value) => value.latitude),
+                await widget.bloc
+                    .getCurrentLocation()
+                    .then((value) => value.longitude),
               ),
               zoom: 15.0,
             ),
@@ -69,7 +73,7 @@ class MapPickerState extends State<MapPicker> {
             child: Icon(
               Icons.location_on,
               color: Colors.red,
-              size: 36,
+              size: 45,
             ),
           ),
         ],

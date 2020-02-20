@@ -50,24 +50,30 @@ class Footer extends StatelessWidget {
     return Container(
       height: 90,
       width: double.infinity,
-      color: Colors.blue[50],
-      child: FractionallySizedBox(
-        widthFactor: 0.7,
-        heightFactor: 0.5,
-        child: RaisedButton(
-          color: Colors.blue,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-          onPressed: () async {
-            // Show Dialog
-            await _showInfoLocationDialog(context, bloc.currentLocation);
-          },
-          child: Text(
-            "Show Location",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 17,
-            ),
+      padding: EdgeInsets.all(10),
+      color: Colors.transparent,
+      child: RaisedButton(
+        color: Colors.blue,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+        onPressed: () async {
+          LocationMap abc = LocationMap();
+          if (bloc.currentLocation == null) {
+            abc.name = 'No Name';
+            abc.formattedAddress = 'No Format';
+            abc.lat =
+                await bloc.getCurrentLocation().then((value) => value.latitude);
+            abc.lng = await bloc
+                .getCurrentLocation()
+                .then((value) => value.longitude);
+          }
+          // Show Dialog
+          await _showInfoLocationDialog(context, bloc.currentLocation ?? abc);
+        },
+        child: Text(
+          "Show Location",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 17,
           ),
         ),
       ),
@@ -82,11 +88,12 @@ Future<void> _showInfoLocationDialog(
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text(locationMap.name ?? 'No Name'),
+        title: Text(locationMap.name ?? 'No Name 123'),
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
-              Text('Format: ' + (locationMap.formattedAddress ?? 'No Format')),
+              Text('Format: ' +
+                  (locationMap.formattedAddress ?? 'No Format 123')),
               Text('Latitude: ' + (locationMap.lat.toString() ?? '0.0')),
               Text('Longitude: ' + (locationMap.lng.toString() ?? '0.0')),
             ],
